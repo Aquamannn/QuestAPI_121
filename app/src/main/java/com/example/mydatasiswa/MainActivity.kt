@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
             MyDataSiswaTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     DataSiswaApp(
-                        modifier = Modifier.padding(innerPadding)2
+                        modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
