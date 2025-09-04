@@ -1,5 +1,7 @@
 <img width="427" height="839" alt="image" src="https://github.com/user-attachments/assets/7bac7b76-95df-48ac-85c0-a9315d7e75c8" />
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8438bc24-a577-4eb7-8810-d400393a02ba" />
+
 <img width="403" height="858" alt="image" src="https://github.com/user-attachments/assets/e9405a5d-daf9-4847-b63d-1afb60ff8b38" />
 
 <img width="423" height="878" alt="image" src="https://github.com/user-attachments/assets/e29a5071-cde3-4174-a935-110782f65f9a" />
