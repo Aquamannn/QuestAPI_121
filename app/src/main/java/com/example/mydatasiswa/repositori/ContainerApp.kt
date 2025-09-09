@@ -5,6 +5,8 @@ import com.example.mydatasiswa.apiservice.ServiceApiSiswa
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 
 interface ContainerApp {
@@ -14,13 +16,13 @@ interface ContainerApp {
 class DefaultContainerApp : ContainerApp {
     private val baseUrl = "http://10.0.2.2/tiumy/"
 
-    // val logging = HttpLoggingInterceptor().apply {
-    //     level = HttpLoggingInterceptor.Level.BODY
-    // }
-
-    // val klien = OkHttpClient.Builder()
-    //     .addInterceptor(logging)
-    //     .build()
+//     val logging = HttpLoggingInterceptor().apply {
+//         level = HttpLoggingInterceptor.Level.BODY
+//     }
+//
+//     val klien = OkHttpClient.Builder()
+//         .addInterceptor(logging)
+//         .build()
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
@@ -31,7 +33,7 @@ class DefaultContainerApp : ContainerApp {
                 isLenient = true
             }.asConverterFactory("application/json".toMediaType())
         )
-        // .client(klien)
+        //.client(klien)
         .build()
 
     private val retrofitService : ServiceApiSiswa by lazy {
@@ -48,6 +50,6 @@ class AplikasiDataSiswa : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        container = DefaultContainerApp()
+        this.container = DefaultContainerApp()
     }
 }

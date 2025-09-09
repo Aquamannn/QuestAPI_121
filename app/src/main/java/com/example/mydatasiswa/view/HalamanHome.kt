@@ -37,24 +37,21 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.app.Person
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mydatasiswa.R
 import com.example.mydatasiswa.modeldata.DataSiswa
-import com.example.mydatasiswa.uicontroller.DestinasiNavigasi
+import com.example.mydatasiswa.uicontroller.route.DestinasiNavigasi
 import com.example.mydatasiswa.viewmodel.HomeViewModel
 import com.example.mydatasiswa.viewmodel.PenyediaViewModel
 import com.example.mydatasiswa.viewmodel.StatusUiSiswa
 
-object DestinasiHome : DestinasiNavigasi {
-    override val route = "home"
-    override val titleRes = R.string.app_name
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    //navigateToItemEntry: () -> Unit,
-    //navigateToItemUpdate: (Int) -> Unit,
+    navigateToItemEntry: () -> Unit,
+    navigateToItemUpdate: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
@@ -73,8 +70,7 @@ fun HomeScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                //onClick = navigateToItemEntry,
-                onClick = {},
+                onClick = navigateToItemEntry,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
             ) {
@@ -87,7 +83,7 @@ fun HomeScreen(
     ) { innerPadding ->
         HomeBody(
             statusUiSiswa = viewModel.listSiswa,
-            //onSiswaClick = navigateToItemUpdate,
+            onSiswaClick = navigateToItemUpdate,
             retryAction = viewModel::loadSiswa,
             modifier = modifier
                 .padding(innerPadding)
@@ -100,7 +96,7 @@ fun HomeScreen(
 @Composable
 fun HomeBody(
     statusUiSiswa: StatusUiSiswa,
-    //onSiswaClick: (Int) -> Unit,
+    onSiswaClick: (Int) -> Unit,
     retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -110,7 +106,8 @@ fun HomeBody(
     ) {
         when(statusUiSiswa) {
             is StatusUiSiswa.Loading -> LoadingScreen()
-            is StatusUiSiswa.Success -> DaftarSiswa(itemSiswa = statusUiSiswa.siswa)
+            is StatusUiSiswa.Success -> DaftarSiswa(itemSiswa = statusUiSiswa.siswa,
+                onSiswaClick= {onSiswaClick(it.id)})
             is StatusUiSiswa.Error -> ErrorScreen(
                 retryAction,
                 modifier = modifier.fillMaxSize()
@@ -145,6 +142,7 @@ fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
 @Composable
 fun DaftarSiswa(
     itemSiswa : List<DataSiswa>,
+    onSiswaClick: (DataSiswa) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = Modifier) {
@@ -153,6 +151,7 @@ fun DaftarSiswa(
                 siswa = person,
                 modifier = Modifier
                     .padding(dimensionResource(id = R.dimen.padding_small))
+                    .clickable {onSiswaClick(person)}
 
             )
         }
@@ -200,3 +199,4 @@ fun ItemSiswa(
             }
     }
 }
+
