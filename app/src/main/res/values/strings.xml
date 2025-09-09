@@ -16,7 +16,7 @@
     <string name="yes">Ya</string>
     <string name="retry">Retry</string>
     <string name="gagal">Gagal loading</string>
-    <string name="loading">Loading....</string>
+    <string name="loading">Loading...</string>
     <string name="no">Tidak</string>
     <string name="delete">Hapus</string>
     <string name="update">Edit</string>
