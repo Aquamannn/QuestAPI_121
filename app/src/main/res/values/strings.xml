@@ -5,7 +5,7 @@
     <string name="nama">Nama Siswa :</string>
     <string name="alamat">Alamat Siswa:</string>
     <string name="telpon">Telpon Siswa :</string>
-    <string name="nama1">Nama Siswa</string>
+    <string name="nama1">Nama Siswa:</string>
     <string name="alamat1">Alamat Siswa :</string>
     <string name="telpon1">Telpon Siswa :</string>
     <string name="required_field">* required fields</string>
